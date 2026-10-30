@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deryn Cullen</title>
+<meta name="description" content="Deryn Cullen: software developer, technical writer and product owner in Bradford, UK.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f3ee; --surface:#fffdf9; --ink:#1b1a17; --muted:#6b675f; --line:#e6e0d6;
+  --accent:#ff5b3a; --accent-soft:#ffe3db; --mint:#d9f2e4; --sky:#dde9ff; --sun:#fff1c7;
+  --shadow:0 1px 2px rgba(27,26,23,.05),0 8px 24px rgba(27,26,23,.06);
+  --r:22px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141311; --surface:#1d1c19; --ink:#f3efe8; --muted:#a19b90; --line:#2e2c28;
+    --accent:#ff7356; --accent-soft:#3a211b; --mint:#1d3328; --sky:#1d2638; --sun:#3a3220;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141311; --surface:#1d1c19; --ink:#f3efe8; --muted:#a19b90; --line:#2e2c28;
+  --accent:#ff7356; --accent-soft:#3a211b; --mint:#1d3328; --sky:#1d2638; --sun:#3a3220;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:"Bricolage Grotesque",Inter,sans-serif;line-height:1.05;letter-spacing:-.02em}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+@media(min-width:720px){.wrap{padding:0 32px}}
+
+/* nav */
+header{position:sticky;top:0;z-index:20;padding-top:12px;padding-bottom:12px;max-width:none;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+header .nav{max-width:1056px;margin:0 auto}
+section[id]{scroll-margin-top:72px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-family:"Bricolage Grotesque";font-weight:800;font-size:20px;display:flex;align-items:center;gap:8px}
+.logo i{width:26px;height:26px;border-radius:8px;background:var(--ink);display:grid;place-items:center;color:var(--bg);font-style:normal;font-size:14px}
+.links{display:none;gap:4px;background:color-mix(in srgb,var(--surface) 85%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line);padding:5px;border-radius:999px;box-shadow:var(--shadow)}
+.links a{padding:7px 14px;border-radius:999px;font-size:14px;font-weight:500;color:var(--muted);transition:.2s}
+.links a:hover,.links a.on{background:var(--ink);color:var(--bg)}
+@media(min-width:820px){.links{display:flex}}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;font-weight:600;font-size:14px;border:1px solid var(--line);background:var(--surface);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.dark{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.big{padding:14px 24px;font-size:15px}
+.icon-btn{width:40px;height:40px;padding:0;justify-content:center}
+
+/* hero */
+.hero{text-align:center;padding:80px 0 40px;position:relative}
+.wave{display:inline-flex;gap:8px;align-items:center;font-size:14px;color:var(--muted);background:var(--surface);border:1px solid var(--line);padding:6px 14px;border-radius:999px}
+.wave b{display:inline-block;animation:wave 2.4s ease-in-out infinite;transform-origin:70% 70%}
+@keyframes wave{0%,60%,100%{transform:rotate(0)}10%,30%{transform:rotate(14deg)}20%,40%{transform:rotate(-8deg)}}
+.hero h1{font-size:clamp(48px,11vw,120px);font-weight:800;margin:22px 0 18px}
+.hero h1 span{font-weight:400;color:var(--muted)}
+.roles{display:inline-flex;height:44px;overflow:hidden;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:600;padding:0 20px;align-items:center}
+.roles ul{list-style:none;padding:0;height:44px;transition:transform .6s cubic-bezier(.7,0,.2,1)}
+.roles li{height:44px;line-height:44px}
+.hero p.lede{max-width:520px;margin:22px auto 30px;color:var(--muted);font-size:18px}
+.hero p.lede em{font-style:normal;color:var(--ink);font-weight:600;background:linear-gradient(transparent 60%,var(--sun) 60%)}
+
+/* orbit toy */
+.orbit{position:relative;width:min(420px,calc(100vw - 150px));aspect-ratio:1;margin:50px auto 0}
+.ring{position:absolute;inset:0;border:1.5px dashed var(--line);border-radius:50%}
+.ring.r2{inset:18%}.ring.r3{inset:36%;border-style:solid;background:var(--surface);box-shadow:var(--shadow)}
+.core{position:absolute;inset:42%;border-radius:50%;background:var(--accent);transition:transform .15s ease-out;box-shadow:0 0 0 10px var(--accent-soft)}
+.chip{position:absolute;left:50%;top:50%;font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);white-space:nowrap;box-shadow:var(--shadow)}
+
+/* sections */
+section{padding:72px 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+.head h2{font-size:clamp(32px,5vw,52px);font-weight:800}
+.head p{color:var(--muted);max-width:380px}
+.kicker{font-size:13px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}
+.grid2{display:grid;gap:16px}
+@media(min-width:760px){.grid2{grid-template-columns:1fr 1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow);transition:transform .3s}
+.card:hover{transform:translateY(-4px)}
+.badge{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-family:"Bricolage Grotesque";font-weight:800;margin-bottom:16px}
+.card h3{font-size:22px;margin-bottom:6px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted);margin-bottom:14px}
+.card p{color:var(--muted);font-size:15px}
+.card p b{color:var(--ink);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.tags span{font-size:12px;padding:4px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--line)}
+
+.work{display:grid;gap:16px}
+@media(min-width:760px){.work{grid-template-columns:repeat(6,1fr)}.work .w-a{grid-column:span 4}.work .w-b{grid-column:span 2}.work .w-c{grid-column:span 3}}
+.proj{border-radius:var(--r);overflow:hidden;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column}
+.thumb{aspect-ratio:16/10;position:relative;overflow:hidden}
+.thumb .shape{position:absolute;border-radius:50%;filter:blur(.5px);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.proj:hover .shape{transform:scale(1.12) rotate(8deg)}
+.proj .info{padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.proj h3{font-size:19px}.proj small{color:var(--muted)}
+.arrow{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;flex:none;transition:.3s}
+.proj:hover .arrow{background:var(--accent);color:#fff;border-color:var(--accent);transform:rotate(-45deg)}
+
+.marquee{overflow:hidden;padding:8px 0;mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.track{display:flex;gap:16px;width:max-content;animation:slide 40s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.tile{width:230px;height:290px;border-radius:var(--r);padding:20px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line)}
+.tile .em{font-size:40px}
+.tile h3{font-size:20px}.tile p{font-size:14px;color:var(--muted)}
+
+.cta{background:var(--ink);color:var(--bg);border-radius:32px;padding:56px 24px;text-align:center;position:relative;overflow:hidden}
+.cta h2{font-size:clamp(36px,7vw,72px);font-weight:800;margin-bottom:14px}
+.cta p{opacity:.7;max-width:460px;margin:0 auto 28px}
+.cta .btn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cta .dots{position:absolute;inset:0;background-image:radial-gradient(color-mix(in srgb,var(--bg) 18%,transparent) 1px,transparent 1px);background-size:22px 22px;opacity:.5;pointer-events:none}
+.socials{display:flex;gap:10px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+.socials a{font-size:14px;opacity:.75;border-bottom:1px solid currentColor}
+.socials a:hover{opacity:1}
+footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <nav class="nav">
+    <a class="logo" href="#top"><i>D</i>deryncullen.</a>
+    <div class="links">
+      <a href="#experience">Experience</a><a href="#work">Work</a><a href="#music">Music</a><a href="#contact">Contact</a>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn icon-btn" id="theme" aria-label="Toggle theme">◐</button>
+      <a class="btn dark" href="#contact">Say hello</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <span class="wave"><b>👋</b> Hello from Bradford, UK</span>
+    <h1><span>I'm</span> Deryn Cullen</h1>
+    <div class="roles" aria-live="polite"><ul id="roles">
+      <li>Software developer</li><li>Technical writer</li><li>Product owner</li><li>Software developer</li>
+    </ul></div>
+    <p class="lede">I leave behind <em>working software, clear documentation</em> and a team that understands both.</p>
+    <a class="btn dark big" href="#contact">Talk about a contract →</a>
+
+    <div class="orbit" id="orbit" aria-hidden="true">
+      <div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div>
+      <div class="core" id="core"></div>
+    </div>
+  </div>
+
+  <section id="experience" class="wrap">
+    <div class="head reveal">
+      <div><div class="kicker">Experience</div><h2>Two halves that fit together</h2></div>
+      <p>Sixteen years making music, then a move into software. Both taught me to balance what's technical with what's creative.</p>
+    </div>
+    <div class="grid2">
+      <article class="card reveal">
+        <div class="badge" style="background:var(--accent-soft);color:var(--accent)">DC</div>
+        <h3>Contractor</h3>
+        <div class="meta"><span>📍 Bradford, UK</span><span>🗓 Now</span></div>
+        <p>Contract work in <b>software development</b>, <b>technical writing</b> and <b>product ownership</b>, with fluency in professional music software for anything that touches music or creators.</p>
+        <div class="tags"><span>Development</span><span>Docs</span><span>Product</span></div>
+      </article>
+      <article class="card reveal">
+        <div class="badge" style="background:var(--sky);color:#3b6fd8">LBG</div>
+        <h3>Lloyds Banking Group</h3>
+        <div class="meta"><span>☁️ Private cloud</span><span>🗓 Most recent</span></div>
+        <p>Owned a <b>private cloud platform</b>, setting direction and keeping engineering and stakeholders aligned.</p>
+        <div class="tags"><span>Platform ownership</span><span>Cloud</span><span>Banking</span></div>
+      </article>
+      <article class="card reveal">
+        <div class="badge" style="background:var(--mint);color:#2f8a5b">Sky</div>
+        <h3>Sky, Digital Identity</h3>
+        <div class="meta"><span>👥 9–10M customers</span><span>🗓 From 2023</span></div>
+        <p>Built features for an identity platform used by <b>9–10 million customers</b>, progressing from engineer to <b>Technical Product Owner</b>.</p>
+        <div class="tags"><span>Software engineering</span><span>Identity</span><span>Product</span></div>
+      </article>
+      <article class="card reveal">
+        <div class="badge" style="background:var(--sun);color:#a57a00">♪</div>
+        <h3>Composer, producer &amp; session cellist</h3>
+        <div class="meta"><span>🌍 Europe &amp; North America</span><span>🗓 16+ years</span></div>
+        <p>Wrote for <b>broadcast and online media</b>, recorded cello for composers on two continents, and <b>engineered and produced</b> all my own work.</p>
+        <div class="tags"><span>Composition</span><span>Production</span><span>Cello</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="work" class="wrap">
+    <div class="head reveal">
+      <div><div class="kicker">Selected work</div><h2>Things I've worked on</h2></div>
+      <p>Each one deserves a short case study. Send me the details and I'll write them up.</p>
+    </div>
+    <div class="work">
+      <a class="proj w-a reveal" href="#"><div class="thumb" style="background:var(--mint)">
+        <div class="shape" style="width:60%;aspect-ratio:1;left:-8%;top:20%;background:#3fb37a"></div>
+        <div class="shape" style="width:30%;aspect-ratio:1;right:10%;top:-10%;background:var(--sun)"></div></div>
+        <div class="info"><div><h3>Digital Identity at Sky</h3><small>Engineering → product ownership</small></div><span class="arrow">→</span></div></a>
+      <a class="proj w-b reveal" href="#"><div class="thumb" style="background:var(--sky)">
+        <div class="shape" style="width:70%;aspect-ratio:1;left:15%;top:35%;background:#5b8cff"></div></div>
+        <div class="info"><div><h3>Private cloud</h3><small>Lloyds Banking Group</small></div><span class="arrow">→</span></div></a>
+      <a class="proj w-c reveal" href="#"><div class="thumb" style="background:var(--accent-soft)">
+        <div class="shape" style="width:45%;aspect-ratio:1;left:10%;top:10%;background:var(--accent);border-radius:24%"></div>
+        <div class="shape" style="width:35%;aspect-ratio:1;right:8%;bottom:-12%;background:var(--surface)"></div></div>
+        <div class="info"><div><h3>Technical writing</h3><small>Docs teams actually read</small></div><span class="arrow">→</span></div></a>
+      <a class="proj w-c reveal" href="https://soundcloud.com/deryncullencellist" target="_blank" rel="noopener"><div class="thumb" style="background:var(--sun)">
+        <div class="shape" style="width:55%;aspect-ratio:1;left:30%;top:30%;background:var(--ink);border-radius:30% 70% 60% 40%"></div></div>
+        <div class="info"><div><h3>Music for broadcast</h3><small>Composition &amp; production</small></div><span class="arrow">→</span></div></a>
+    </div>
+  </section>
+
+  <section id="music">
+    <div class="wrap head reveal">
+      <div><div class="kicker">The other half</div><h2>Still a musician</h2></div>
+      <p>What sixteen years in studios brings to software projects. Hover to pause.</p>
+    </div>
+    <div class="marquee"><div class="track" id="track">
+      <div class="tile" style="background:var(--accent-soft)"><span class="em">🎻</span><div><h3>Session cello</h3><p>Recorded for composers across Europe and North America.</p></div></div>
+      <div class="tile" style="background:var(--sky)"><span class="em">📺</span><div><h3>Broadcast &amp; online</h3><p>Music written to brief, on deadline, for picture.</p></div></div>
+      <div class="tile" style="background:var(--mint)"><span class="em">🎛️</span><div><h3>Engineer &amp; producer</h3><p>Ran every session myself, from mic choice to final master.</p></div></div>
+      <div class="tile" style="background:var(--sun)"><span class="em">🎹</span><div><h3>Music software</h3><p>Fluent in the pro tools creators use every day.</p></div></div>
+      <div class="tile" style="background:var(--surface)"><span class="em">🤝</span><div><h3>Creative + technical</h3><p>Used to balancing what the art needs with what the tech allows.</p></div></div>
+    </div></div>
+  </section>
+
+  <section id="contact" class="wrap">
+    <div class="cta reveal">
+      <div class="dots"></div>
+      <h2>Have a project<br>in mind?</h2>
+      <p>Available for contract work in software development, technical writing and product ownership, especially where it touches music or creators.</p>
+      <a class="btn big" href="mailto:derynleigh.cullen@icloud.com">derynleigh.cullen@icloud.com</a>
+      <div class="socials"><a href="https://www.linkedin.com/in/deryncullen/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/derynLeigh" target="_blank" rel="noopener">GitHub</a><a href="https://soundcloud.com/deryncullencellist" target="_blank" rel="noopener">SoundCloud</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>© <span id="yr"></span> Deryn Cullen · Bradford, UK</span>
+  <a href="#top">Back to top ↑</a>
+</footer>
+
+<script>
+// rotating role chip
+(() => {
+  const ul = document.getElementById('roles'), n = ul.children.length; let i = 0;
+  setInterval(() => {
+    i++; ul.style.transform = `translateY(${-44 * i}px)`;
+    if (i === n - 1) setTimeout(() => { ul.style.transition = 'none'; i = 0; ul.style.transform = 'none';
+      requestAnimationFrame(() => requestAnimationFrame(() => ul.style.transition = '')); }, 650);
+  }, 2200);
+})();
+
+// orbiting skill chips + core that leans toward the cursor
+(() => {
+  const orbit = document.getElementById('orbit'), core = document.getElementById('core');
+  const skills = ['Code','Docs','Product','Cloud','Identity','Agile','Cello','Audio'];
+  const chips = skills.map(s => { const c = document.createElement('span'); c.className = 'chip'; c.textContent = s; orbit.appendChild(c); return c; });
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let t = 0;
+  const tick = () => {
+    const R = orbit.offsetWidth / 2;
+    chips.forEach((c, k) => {
+      const outer = k % 2 === 0, r = outer ? R : R * .64;
+      const a = (k / skills.length) * Math.PI * 2 + t * (outer ? 1 : -1.4);
+      c.style.transform = `translate(calc(${Math.cos(a) * r}px - 50%), calc(${Math.sin(a) * r}px - 50%))`;
+    });
+    if (!still) { t += .0025; requestAnimationFrame(tick); }
+  };
+  tick();
+  addEventListener('pointermove', e => {
+    const b = orbit.getBoundingClientRect();
+    const dx = e.clientX - (b.left + b.width / 2), dy = e.clientY - (b.top + b.height / 2);
+    const d = Math.hypot(dx, dy) || 1, m = Math.min(d / 12, b.width * .06);
+    core.style.transform = `translate(${dx / d * m}px, ${dy / d * m}px)`;
+  });
+})();
+
+// marquee: duplicate tiles for a seamless loop
+const track = document.getElementById('track'); track.innerHTML += track.innerHTML;
+
+// reveal on scroll + active nav link
+const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+const links = [...document.querySelectorAll('.links a')];
+const spy = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+}), { rootMargin: '-45% 0px -50% 0px' });
+document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
+
+// theme toggle (remembered per browser)
+const root = document.documentElement;
+try { const s = localStorage.getItem('theme'); if (s) root.dataset.theme = s; } catch {}
+document.getElementById('theme').onclick = () => {
+  const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  root.dataset.theme = dark ? 'light' : 'dark';
+  try { localStorage.setItem('theme', root.dataset.theme); } catch {}
+};
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
