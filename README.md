@@ -76,7 +76,21 @@ Colours are CSS custom properties on `:root`, such as `--bg`, `--ink` and `--acc
 
 ## Deployment
 
-The site is a static file, so any static host will serve it as it is.
+The site is deployed on **[Vercel](https://vercel.com)**: <https://portfolio-site-kappa-nine-13.vercel.app>
+
+The Vercel project is connected to this repository:
+
+- Every push to `main` deploys to production automatically.
+- Pushes to other branches, and pull requests, get their own preview URL.
+- No build settings are needed. Vercel's framework preset is **Other**, with no build command, and it serves `index.html` from the repository root.
+
+To deploy by hand from your machine (requires the [Vercel CLI](https://vercel.com/docs/cli)):
+
+```bash
+vercel deploy --prod
+```
+
+The site is a static file, so any other static host will serve it as it is too.
 
 ### GitHub Pages
 
