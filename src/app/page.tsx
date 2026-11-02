@@ -1,6 +1,7 @@
 import Orbit from "@/components/Orbit";
 import RoleTicker from "@/components/RoleTicker";
 import ScrollEffects from "@/components/ScrollEffects";
+import TextSizeToggle from "@/components/TextSizeToggle";
 import ThemeToggle from "@/components/ThemeToggle";
 import { email, experience, music, navLinks, roles, skills, socials, work } from "@/lib/content";
 
@@ -16,7 +17,8 @@ export default function Home() {
           <div className="links">
             {navLinks.map(l => <a key={l.href} href={l.href}>{l.label}</a>)}
           </div>
-          <div style={{ display: "flex", gap: 8 }}>
+          <div className="actions">
+            <TextSizeToggle />
             <ThemeToggle />
             <a className="btn dark" href="#contact">Say hello</a>
           </div>
@@ -54,7 +56,7 @@ export default function Home() {
         <section id="work" className="wrap">
           <div className="head reveal">
             <div><div className="kicker">Selected work</div><h2>Things I&apos;ve worked on</h2></div>
-            <p>Each one deserves a short case study. Send me the details and I&apos;ll write them up.</p>
+            <p>Short case study for each item to be added.</p>
           </div>
           <div className="work">
             {work.map(p => (

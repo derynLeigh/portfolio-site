@@ -27,7 +27,7 @@ type Experience = {
 export const experience: Experience[] = [
   {
     badge: "DC",
-    badgeStyle: { background: "var(--accent-soft)", color: "var(--accent)" },
+    badgeStyle: { background: "var(--accent-soft)", color: "var(--accent-text)" },
     title: "Contractor",
     meta: ["📍 Bradford, UK", "🗓 Now"],
     body: [

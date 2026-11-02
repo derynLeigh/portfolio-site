@@ -10,14 +10,14 @@ export const metadata: Metadata = {
   description: "Deryn Cullen: software developer, technical writer and product owner in Bradford, UK.",
 };
 
-// Applies the saved theme before first paint so there's no flash of the wrong palette.
-const themeScript = `try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch{}`;
+// Applies the saved theme and text size before first paint so there's no flash of the wrong palette or size.
+const prefsScript = `try{const d=document.documentElement.dataset,t=localStorage.getItem('theme'),s=localStorage.getItem('text');if(t)d.theme=t;if(s)d.text=s}catch{}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: prefsScript }} />
       </head>
       <body>{children}</body>
     </html>
