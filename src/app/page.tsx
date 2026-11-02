@@ -4,6 +4,9 @@ import ScrollEffects from "@/components/ScrollEffects";
 import ThemeToggle from "@/components/ThemeToggle";
 import { email, experience, music, navLinks, roles, skills, socials, work } from "@/lib/content";
 
+// One set of music tiles is ~1,230px wide; four copies keep the marquee full on screens up to ~3,700px.
+const MARQUEE_COPIES = 4;
+
 export default function Home() {
   return (
     <>
@@ -22,7 +25,7 @@ export default function Home() {
 
       <main id="top">
         <div className="wrap hero">
-          <span className="wave"><b>👋</b> Hello from Bradford, UK</span>
+          <span className="wave"><b>👋</b> Hello from West Yorkshire, UK</span>
           <h1><span>I&apos;m</span> Deryn Cullen</h1>
           <RoleTicker roles={roles} />
           <p className="lede">I leave behind <em>working software, clear documentation</em> and a team that understands both.</p>
@@ -33,7 +36,7 @@ export default function Home() {
         <section id="experience" className="wrap">
           <div className="head reveal">
             <div><div className="kicker">Experience</div><h2>Two halves that fit together</h2></div>
-            <p>Sixteen years making music, then a move into software. Both taught me to balance what&apos;s technical with what&apos;s creative.</p>
+            <p>A professional musician for over two decades, then a move into software. Both taught me to balance what&apos;s technical with what&apos;s creative.</p>
           </div>
           <div className="grid2">
             {experience.map(x => (
@@ -79,14 +82,14 @@ export default function Home() {
             <p>What sixteen years in studios brings to software projects. Hover to pause.</p>
           </div>
           <div className="marquee">
-            <div className="track">
-              {/* Tiles render twice so the scroll loops seamlessly; the copy is hidden from screen readers. */}
-              {[false, true].flatMap(copy => music.map(m => (
-                <div key={`${copy}-${m.title}`} className="tile" style={{ background: m.bg }} aria-hidden={copy || undefined}>
+            <div className="track" style={{ "--copies": MARQUEE_COPIES } as React.CSSProperties}>
+              {/* Tiles repeat so the strip fills wide screens and loops seamlessly; repeats are hidden from screen readers. */}
+              {Array.from({ length: MARQUEE_COPIES }, (_, copy) => music.map(m => (
+                <div key={`${copy}-${m.title}`} className="tile" style={{ background: m.bg }} aria-hidden={copy > 0 || undefined}>
                   <span className="em">{m.emoji}</span>
                   <div><h3>{m.title}</h3><p>{m.text}</p></div>
                 </div>
-              )))}
+              ))).flat()}
             </div>
           </div>
         </section>

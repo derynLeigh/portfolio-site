@@ -122,7 +122,7 @@ export const work: Project[] = [
 export const music = [
   { emoji: "🎻", title: "Session cello", text: "Recorded for composers across Europe and North America.", bg: "var(--accent-soft)" },
   { emoji: "📺", title: "Broadcast & online", text: "Music written to brief, on deadline, for picture.", bg: "var(--sky)" },
-  { emoji: "🎛️", title: "Engineer & producer", text: "Ran every session myself, from mic choice to final master.", bg: "var(--mint)" },
+  { emoji: "🎛️", title: "Engineer & producer", text: "Ran every session myself, from mic choice to final mix.", bg: "var(--mint)" },
   { emoji: "🎹", title: "Music software", text: "Fluent in the pro tools creators use every day.", bg: "var(--sun)" },
   { emoji: "🤝", title: "Creative + technical", text: "Used to balancing what the art needs with what the tech allows.", bg: "var(--surface)" },
 ];
