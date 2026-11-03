@@ -2,7 +2,7 @@
 
 Personal portfolio site for **Deryn Cullen**, software developer, technical writer and product owner based in Bradford, UK.
 
-The site tells the story of a career in two halves: 16+ years as a composer, producer and session cellist, followed by software engineering and product ownership at Sky and Lloyds Banking Group. It's a single, dependency-free page built to load fast and be easy to edit.
+The site tells the story of a career in two halves: 16+ years as a composer, producer and session cellist, followed by software engineering and product ownership at Sky and Lloyds Banking Group. It's a single page built with Next.js and statically prerendered, so it loads fast and stays easy to edit.
 
 ## Features
 
@@ -16,63 +16,70 @@ The site tells the story of a career in two halves: 16+ years as a composer, pro
 
 | Layer | Choice |
 | --- | --- |
-| Markup | HTML5 |
-| Styling | Hand-written CSS with custom properties (design tokens), `color-mix()`, CSS Grid and Flexbox |
-| Behaviour | Vanilla JavaScript (`IntersectionObserver`, `requestAnimationFrame`, pointer events) |
-| Fonts | [Bricolage Grotesque](https://fonts.google.com/specimen/Bricolage+Grotesque) and [Inter](https://fonts.google.com/specimen/Inter), from Google Fonts |
-| Build | None: no framework, bundler or package manager |
-
-Everything lives in `index.html`: styles in a `<style>` block in the head, scripts in a `<script>` block at the end of the body.
+| Framework | [Next.js](https://nextjs.org) 16 (App Router), React 19, TypeScript |
+| Rendering | Static: the page is prerendered at build time |
+| Styling | Hand-written CSS with custom properties (design tokens), `color-mix()`, CSS Grid and Flexbox, in `src/app/globals.css` |
+| Behaviour | Small client components using `IntersectionObserver`, `requestAnimationFrame` and pointer events |
+| Fonts | [Bricolage Grotesque](https://fonts.google.com/specimen/Bricolage+Grotesque) and [Inter](https://fonts.google.com/specimen/Inter) via `next/font`, self-hosted at build time |
 
 ## Project structure
 
 ```text
 portfolio-site/
-├── index.html   # The whole site: markup, styles and scripts
-└── README.md
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx         # <html>, fonts, metadata, theme script
+│   │   ├── page.tsx           # The page markup
+│   │   └── globals.css        # All styles and design tokens
+│   ├── components/
+│   │   ├── Orbit.tsx          # Orbiting skill tags and cursor-following dot
+│   │   ├── RoleTicker.tsx     # Rotating role badge
+│   │   ├── ScrollEffects.tsx  # Fade-in on scroll and active nav link
+│   │   └── ThemeToggle.tsx    # Light/dark toggle
+│   └── lib/
+│       └── content.ts         # Site content: experience, work, music, links
+├── next.config.ts
+├── vercel.json
+└── package.json
 ```
 
 ## Local development
 
-You only need a browser. To open the page directly:
+Requires Node.js 20.9 or later.
 
 ```bash
-open index.html
+npm install
+npm run dev
 ```
 
-A local server is closer to how the site behaves once it's hosted, so it's the better option. Use either of these:
+Then visit <http://localhost:3000>. Edits reload automatically.
+
+To check a production build locally:
 
 ```bash
-python3 -m http.server 4321
+npm run build
+npm start
 ```
-
-```bash
-npx serve .
-```
-
-Then visit <http://localhost:4321> (or the address `serve` prints). There's no build step, so reload the page after each edit.
 
 ## Editing content
 
-All content is plain HTML in `index.html`. Each section has an `id`:
+Most content lives in `src/lib/content.ts` as plain data:
 
-| Section | Where to find it |
+| Content | Export |
 | --- | --- |
-| Header and navigation | `<header class="wrap">` |
-| Hero, rotating roles | `<div class="wrap hero">` and `<ul id="roles">` |
-| Experience cards | `<section id="experience">` |
-| Selected work tiles | `<section id="work">` |
-| Music cards | `<section id="music">` |
-| Contact and social links | `<section id="contact">` |
+| Navigation links | `navLinks` |
+| Rotating roles | `roles`: the last entry must repeat the first so the loop is seamless |
+| Orbiting skill tags | `skills` |
+| Experience cards | `experience`: `body` alternates plain and **bold** segments, starting with plain |
+| Selected work tiles | `work` |
+| Music tiles | `music` |
+| Email and social links | `email`, `socials` |
 
-Some things are set in the script rather than the markup:
-
-- **Orbiting skill tags:** edit the `skills` array in the `<script>` block.
-- **Rotating roles:** the last `<li>` in `#roles` must repeat the first one so the loop is seamless.
+Headings and intro copy for each section are in `src/app/page.tsx`.
 
 ### Theming
 
-Colours are CSS custom properties on `:root`, such as `--bg`, `--ink` and `--accent`. The dark palette is defined twice: once inside `@media (prefers-color-scheme: dark)` for the system setting, and once under `:root[data-theme="dark"]` for the manual toggle. Change both when you adjust a dark-mode colour.
+Colours are CSS custom properties on `:root` in `src/app/globals.css`, such as `--bg`, `--ink` and `--accent`. The dark palette is defined twice: once inside `@media (prefers-color-scheme: dark)` for the system setting, and once under `:root[data-theme="dark"]` for the manual toggle. Change both when you adjust a dark-mode colour.
 
 ## Deployment
 
@@ -82,7 +89,7 @@ The Vercel project is connected to this repository:
 
 - Every push to `main` deploys to production automatically.
 - Pushes to other branches, and pull requests, get their own preview URL.
-- No build settings are needed. Vercel's framework preset is **Other**, with no build command, and it serves `index.html` from the repository root.
+- `vercel.json` sets the framework to **Next.js**, so Vercel runs `next build` with no other settings needed.
 
 To deploy by hand from your machine (requires the [Vercel CLI](https://vercel.com/docs/cli)):
 
@@ -90,25 +97,16 @@ To deploy by hand from your machine (requires the [Vercel CLI](https://vercel.co
 vercel deploy --prod
 ```
 
-The site is a static file, so any other static host will serve it as it is too.
-
-### GitHub Pages
-
-1. Push this folder to a GitHub repository.
-2. In the repository, go to **Settings → Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**, then select `main` and `/ (root)`.
-4. The site appears at `https://<username>.github.io/<repository>/` within a minute or two. To serve it from `https://<username>.github.io/`, name the repository `<username>.github.io`.
-
 ### Other hosts
 
-Netlify, Vercel and Cloudflare Pages all work with no configuration. Point them at the repository root and leave the build command empty.
+Netlify and Cloudflare Pages both support Next.js. Any Node.js host can run `npm run build && npm start`.
 
 ## Roadmap
 
 - [ ] Write case studies for the Sky, Lloyds and technical writing work tiles
 - [ ] Add a professional photo
 - [ ] Add Open Graph and social preview metadata
-- [ ] Self-host the fonts so the site makes no requests to Google Fonts
+- [x] Self-host the fonts so the site makes no requests to Google Fonts
 
 ## Contact
 
